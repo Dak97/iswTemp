@@ -1,0 +1,15 @@
+{% extends "base_generic.html" %}
+ 
+{% block content %}
+ 
+<h3>{{ title }}</h3>
+ 
+<div>
+<form method="POST" action="" enctype="multipart/form-data">{% csrf_token %}
+  {{ form.as_p }}
+  <input type="submit" value="{{ title }}"/>
+
+</form>
+</div>
+ 
+{% endblock %}

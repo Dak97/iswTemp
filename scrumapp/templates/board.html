@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<p>Benvenuto nella tua Board</p>
+
+<a href="{{ board.get_absolute_url }}">Aggiungi Utente</a>
+<a href="{% url 'crea_colonna' %}">Crea nuova colonna</a>
+<a href="{% url 'crea_card' %}">Crea nuova card</a>
+<a href="{{ board.get_pk_burndown}}">burndown</a>
+
+
+{% for col in column_list %}
+<ul>
+    <li><a href="{{col.get_pk }}"> {{ col.name }} </a></li>
+    {% for c in card_list %}
+        {% if c.id_column.id == col.id %}
+            <li><a href="{{ c.get_pk_modify}}">{{ c.title }}</a> </li>
+        {% endif %}
+    {% endfor %}
+</ul>
+{% endfor %}
+
+{% endblock %}

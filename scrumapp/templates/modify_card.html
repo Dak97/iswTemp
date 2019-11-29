@@ -1,0 +1,36 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<p>Benvenuto nella tua card: </p>
+<li>Titolo: {{ card.title }} </li>
+<li>Descrizione: {{ card.description }} </li>
+<li>Data di scadenza: {{ card.expiration_date }} </li>
+<li>Story points:
+    {% if card.story_points > 0 and card.story_points < 6 %}
+        {{ card.story_points }} <a href="{{ card.get_pk_sp }}">Modifica</a>
+    {% else %}
+        A questa card non sono stati ancora assegnati story points, <a href="{{ card.get_pk_sp }}">
+        Assegna</a>
+    {% endif %}
+</li>
+<li><a href="{{ card.get_pk }}">Modifica la card</a></li>
+<li>La card attualmente appartiene a questa colonna:
+    {{ card.id_column.name }} <a href="{{ card.get_pk_modify_column}}">Modifica</a>
+</li>
+<p>Questi sono gli utenti che possono vedere la card:</p>
+{% for user in user_list %}
+<li>{{ user.username }}
+<a href="{% url 'delete_user_from_card' user.id card.id %}">Elimina utente dalla card</a>
+</li>
+{% endfor %}
+{% if user in exclude_user_list %}
+<p>Questi sono gli utenti che invece sono esclusi, se vuoi puoi aggiungerne uno!</p>
+{% for user in exclude_user_list %}
+<li>{{ user.username }}
+<a href="{% url 'add_user_to_card' user.id card.id %}">Aggiung</a>
+</li>
+{% endfor %}
+{% else %}
+<p>Al momento tutti gli utenti della board possono vedere le card</p>
+{% endif %}
+{% endblock %}

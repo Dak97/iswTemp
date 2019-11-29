@@ -1,0 +1,9 @@
+{% extends "base_generic.html" %}
+ 
+{% block content %}
+<p>Seleziona l'utente da aggiungere alla tua board:</p>
+    {% for u in user_list %}
+        <li>{{ u.username }} - <a href="{% url 'add_user_confirm' u.id b.id %}">Aggiungi</a> </li>
+    {% endfor %}
+
+{% endblock %}

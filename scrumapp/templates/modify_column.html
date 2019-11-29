@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<p>Benvenuto nella tua colonna " {{ col.name }} " </p>
+
+<a href="{{ col.get_absolute_url }}">Modifica il nome della colonna</a>
+<p>Ecco le card presenti nella colonna:</p>
+<a href="{{ col.get_pk_new }}">Aggiungi una nuova card alla colonna</a>
+{% for card in card_list %}
+<ul>
+<li>
+    {{ card.title }}
+    {{card.description}}
+    {{card.expiration_date}}
+    <a href="{{card.get_absolute_url}}">Elimina questa card</a>
+</li>
+</ul>
+{% endfor %}
+<a href="{{ col.get_pk_delete }}">Clicca qui se vuoi eliminare questa colonna</a>
+{% endblock %}

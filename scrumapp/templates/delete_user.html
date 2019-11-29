@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+
+{% block content %}
+
+<p>Seleziona l'utente da eliminare:</p>
+    {% for u in user_list %}
+        <li>{{ u.username }} - <a href="{% url 'user_confirm_delete' u.id b.id %}">Elimina</a> </li>
+    {% endfor %}
+
+
+{% endblock %}

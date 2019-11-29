@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+
+{% block content %}
+
+{% if request.user.is_authenticated %}
+<h1>Benvenuto {{ user.username }}</h1>
+{% else %}
+<p>Effettua il login o se non l'hai ancora fatto, registrati all'applicazione!</p>
+{% endif %}
+
+{% endblock %}

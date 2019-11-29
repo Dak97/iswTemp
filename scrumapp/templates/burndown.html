@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<p>Benvenuto nella burndown della board: {{board.name}}</p>
+
+<p>Nella board ci sono in tutto: {{total_card}} card</p>
+{% for key, value in card_dictionary.items %}
+        <p>Numero di card nella {{ key }}: {{ value }}</p>
+{% endfor %}
+<p>Numero totale di card scadute: {{ card_scadute }}</p>
+<p>Numero totale punti storia utilizzati: {{ story_points }}</p>
+{% endblock %}

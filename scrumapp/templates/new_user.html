@@ -1,0 +1,11 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<p>Questi sono gli utenti che appartengono alla board:</p>
+{% for u in user_list %}
+    <li>{{ u.username }}</li>
+{% endfor %}
+<p>Vuoi aggiungere un utente o eliminarne uno?</p>
+<a href="{{ board.get_pk_new_user }}">Aggiungi Utente</a>
+<a href="{{ board.get_pk_delete_user }}">Elimina Utente</a>
+{% endblock %}
