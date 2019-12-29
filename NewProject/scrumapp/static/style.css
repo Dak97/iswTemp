@@ -1,0 +1,185 @@
+a {
+color: #28a745;
+}
+
+a:hover {
+color: green;
+}
+
+#column-width a{
+    color: #20c997;
+}
+
+
+.didascalia{
+    text-align: center;
+    font-size: 1rem;
+    margin-top: 3%;
+    }
+
+.didascalia span {
+    padding-top: 35%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+ }
+
+.didascalia img{
+    margin-top: 5%;
+    width: 70%;
+}
+
+.didascalia figure{
+
+    color: white;
+    }
+
+.didascalia a{
+    text-align: center;
+}
+
+
+
+.form-style{
+    text-align: center;
+    margin-top: 3%;
+}
+
+.form-style h2{
+    margin-top: 3%;
+    padding-bottom: 3%;
+}
+
+.form-style #id_password{
+    margin-left: 0.4%;
+}
+
+#richiesta-form{
+    margin-top: 3%;
+}
+
+.form-registration .helptext{
+    visibility: hidden;
+
+}
+
+.form-registration #id_password1{
+    margin-left: 0.7%;
+}
+
+
+.form-registration{
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.form-registration h2{
+    text-align: center;
+    margin-top: 3%;
+    padding-bottom: 5%;
+}
+.register-form h2{
+    text-align: center;
+    margin-top: 3%;
+}
+
+.reg{
+    margin-top: 3%;
+    text-align: center;
+}
+
+
+.center-class{
+    margin-left: 40%;
+}
+
+#column-width{
+    text-align: center;
+}
+
+.container-margin{
+    text-align: center;
+    margin-top: 3%;
+}
+
+.dropdown-navbar{
+margin-right: 10%;
+}
+
+.dropdown-menu-navbar{
+margin-right: 20%
+}
+
+.logout{
+    padding-bottom: 20%;
+}
+.modify-column{
+    margin-top: 3%;
+    margin-left: 0auto;
+}
+
+.card-width{
+    width: 30%;
+    margin-left: 35%;
+}
+.card-width h5{
+    padding-top: 5%;
+    padding-bottom: 10%;
+}
+
+.board-card-width{
+    width: 100%;
+    height: 7rem;
+    padding-top: 25%;
+}
+
+.card-specify{
+    margin-top: 10%;
+    width: 40%;
+    margin-left: 30%;
+}
+
+.button-right{
+    float: right;
+}
+
+.link-right a{
+    float: right;
+}
+
+.burndown-style{
+    margin-top: 3%;
+    margin-left: 20%;
+    text-align: justify;
+}
+
+.del-right{
+    float: right;
+}
+
+.btn-center{
+    text-align: center;
+}
+
+.card-column-width{
+    padding-top: 1%;
+    margin-top: 3%;
+    width: 20%;
+    margin-left: 40%;
+}
+
+#modify-column{
+    margin-top: 3%;
+}
+
+.container-user{
+    text-align: center;
+    margin-left: 35%;
+    margin-right: 35%;
+}
+.container-user p{
+    margin-top: 5%;
+}
+.container-user-list{
+    margin-top: 0;
+}

@@ -1,0 +1,20 @@
+{% extends "base_generic.html" %}
+{% block navbar %}
+<li class="nav-item">
+    <a class="nav-link" href="{{request.META.HTTP_REFERER}}">Annulla</a>
+</li>
+{% endblock %}
+{% block content %}
+<div class="form-style">
+<form method="post">
+    {% csrf_token %}
+    {% if current_user %}
+    Sei sicuro di voler {{value}} "{{ current_user.username }}" ?
+    {% else %}
+    Sei sicuro di voler {{value}} "{{ card.title }}" ?
+    {% endif %}
+    <input type="submit" value="Conferma" />
+</form>
+</div>
+ 
+{% endblock %}

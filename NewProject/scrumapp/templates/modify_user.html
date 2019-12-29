@@ -1,0 +1,50 @@
+{% extends "base_generic.html" %}
+{% block name %}
+<h1 class="navbar-brand" style="color:white">Utenti {{ board.name }}</h1>
+{% endblock %}
+{% block navbar %}
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+</li>
+<li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+        Aggiungi utente</a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        {% for user in exclude_user_list %}
+        <li class=" link-right">
+            {{ user.username }}
+            <a href="{% url 'add_user_confirm' user.id board.id %}">Aggiungi
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</li>
+<li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+       aria-haspopup="true" aria-expanded="false">Elimina utente </a>
+        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        {% for user in delete_user_list %}
+        <li class=" link-right">
+            {{ user.username }}
+            <a href="{% url 'user_confirm_delete' user.id board.id %}">Elimina
+            </a>
+        </li>
+        {% endfor %}
+    </ul>
+</li>
+{% endblock %}
+{% block content %}
+<div class="container-user">
+<p>Questi sono gli utenti che appartengono alla board:</p>
+    <ul class="list-group ">
+    {% for u in user_list %}
+        <li class="list-group-item container-user-list">{{ u.username }}</li>
+    </ul>
+{% endfor %}
+</div>
+
+{% endblock %}
+<!--    <a class="btn btn-primary" href="{% url 'add_user' board.id %}" role="button">Aggiungi Utente</a>
+    <a class="btn btn-primary" href="{% url 'delete_user' board.id %}" role="button">Elimina Utente</a>
+-->

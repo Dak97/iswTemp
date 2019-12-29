@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+{% block name %}
+<h1 class="navbar-brand" style="color:white">Burndown</h1>
+{% endblock %}
+{% block navbar %}
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+</li>
+{% endblock %}
+{% block content %}
+<div class="burndown-style">
+<div class="text-left">
+<p>Benvenuto nella burndown della board: {{board.name}}</p>
+
+<p>Nella board ci sono in tutto: {{total_card}} card</p>
+{% for key, value in card_dictionary.items %}
+        <p>Numero di card in {{ key }}: {{ value }}</p>
+{% endfor %}
+<p>Numero totale di card scadute: {{ expired_card_counting }}</p>
+<p>Numero totale punti storia utilizzati: {{ story_points }}</p>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "base_generic.html" %}
+{% block name %}
+<h1 class="navbar-brand" style="color:white">ScrumApp</h1>
+{% endblock %}
+{% block navbar %}
+<li class="nav-item">
+  <a class="nav-link" href="{% url 'login' %}">Login</a>
+</li>
+{% endblock %}
+
+{% block content %}
+
+<div class="form-registration">
+  <h2>{{ title }}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+  <div class="reg"><input type="submit" value="{{ title }}"/></div>
+</form>
+</div>
+{% endblock %}

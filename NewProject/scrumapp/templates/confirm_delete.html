@@ -1,0 +1,12 @@
+{% extends "base_generic.html" %}
+{% block navbar %}
+<li class="nav-item">
+    <a class="nav-link" href="{{request.META.HTTP_REFERER}}">Annulla</a>
+</li>
+{% endblock %}
+{% block content %}
+<form method="post">{% csrf_token %}
+    <p>Sei sicuro di voler eliminare "{{ object }}"?</p>
+    <input type="submit" value="Conferma">
+</form>
+{% endblock %}

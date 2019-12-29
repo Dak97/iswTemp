@@ -1,0 +1,43 @@
+{% extends "base_generic.html" %}
+{% block name %}
+<h1 class="navbar-brand" style="color:white">{{ board.name }}</h1>
+{% endblock %}
+{% block navbar %}
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'new_user' board.id %}">Aggiungi Utente</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'new_column' %}">Crea nuova colonna</a>
+</li>
+{% if column_list %}
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'new_card' board.id%}">Crea nuova card</a>
+</li>
+{% endif %}
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'burndown' board.id %}">Burndown</a>
+</li>
+{% endblock %}
+
+{% block content %}
+
+<div class="container container-margin">
+    <div class="row justify-content-center">
+{% for col in column_list %}
+      <div class="col-sm-2 col-md-offset-4">
+        <h4 id="column-width"><a href="{% url 'modify_column' col.id %}"> {{ col.name }} </a></h4>
+      {% for c in card_list %}
+      {% if c.id_column.id == col.id %}
+          <div class="card border-success mb-3 board-card-width">
+            <h5 class="card-text"><a href="{% url 'modify_card' c.id %}">{{ c.title }} </a></h5>
+          </div>
+      {% endif %}
+      {% endfor %}
+          </div>
+
+{% endfor %}</div>
+</div>
+{% endblock %}

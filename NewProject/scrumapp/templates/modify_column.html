@@ -1,0 +1,83 @@
+{% extends "base_generic.html" %}
+{% block name %}
+<h1 class="navbar-brand" style="color:white">{{ current_column.name }}</h1>
+{% endblock %}
+{% block navbar %}
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'update_column' current_column.id %}">Modifica nome</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'delete_column' current_column.id %}">Elimina</a>
+</li>
+<li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false">
+        Aggiungi una card</a>
+    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+        {% for column in column_exclude_card_list %}
+        <p style="text-align:center">{{column.name}}:</p>
+        {% for card in exclude_card_list %}
+            {% if card.id_column.id == column.id %}
+        <p>
+            <a href="{% url 'modify_card' card.id %}">{{ card.title }}</a>
+            <a class=" del-right" href="{% url 'add_card_to_column' card.id current_column.id %}">
+                Aggiungi
+            </a>
+        </p>
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+    </ul>
+</li>
+{% endblock %}
+{% block content %}
+<div id="modify-column" class="text-center">
+    {% if card_list %}
+    <h4>Ecco le card presenti nella colonna:</h4>
+    {% for card in card_list %}
+    <div class="card border-success mb-3 card-column-width">
+        <h5 class="card-title"><a href="{% url 'modify_card' card.id %}">{{ card.title }}</a></h5>
+        <div class="card-footer">
+            <a href="{% url 'delete_card' card.id %}" class="btn btn-success">Elimina</a>
+        </div>
+    </div>
+    {% endfor %}
+    {% else %}
+    <h4>Non sono presenti card nella colonna corrente</h4>
+    {% endif %}
+</div>
+
+{% endblock %}
+
+<!--
+<div class="sinistra">
+<p>Ecco le card presenti nella colonna:</p>
+
+{% for card in card_list %}
+    <div class="card text-white bg-dark mb-3 card-width">
+        <h5 class="card-title"><a href="{% url 'modify_card' card.id %}">{{ card.title }}</a></h5>
+        <div class="card-footer">
+            <a href="{% url 'DeleteCard' card.id %}" class="btn btn-primary">Elimina</a>
+        </div>
+    </div>
+</br>
+{% endfor %}
+</div>
+<div class="destra">
+<p>Queste card appartengono ad altre colonne:</p>
+
+{% for card in exclude_card_list %}
+    <div class="card text-white bg-dark mb-3 card-width">
+        <h6 class="card-header">{{ card.id_column.name }}</h6>
+        <h5 class="card-title"><a href="{% url 'modify_card' card.id %}">{{ card.title }}</a></h5>
+        <div class="card-footer">
+            <a href="{% url 'add_card_to_column' card.id col.id %}" class="btn btn-primary">Aggiungi</a>
+        </div>
+    </div>
+</br>
+
+{% endfor %}
+</div> -->

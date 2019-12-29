@@ -1,0 +1,68 @@
+{% extends "base_generic.html" %}
+{% block name %}
+<h1 class="navbar-brand" style="color:white">{{ card.title }}</h1>
+{% endblock %}
+{% block navbar %}
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'dashboard' %}">Dashboard</a>
+</li>
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'update_card' card.id %}">Modifica</a>
+</li>
+{% endblock %}
+{% block content %}
+<div class="card border-success mb-3 card-specify">
+    <h4 class="card-header text-center">{{ card.title }}</h4>
+    <div class="card-body">
+        <p class="card-text">Descrizione: {{ card.description }}</p>
+        <p class="card-text">Scadenza: {{ card.expiration_date }} </p>
+        <p class="card-text link-right">Story points:
+    {% if card.story_points > 0 and card.story_points < 6 %}
+        {{ card.story_points }} <a href="{% url 'update_sp_card' card.id %}">Modifica</a>
+    {% else %}
+        A questa card non sono stati ancora assegnati story points.
+    <a href="{% url 'update_sp_card' card.id %}">
+        Assegna</a>
+    {% endif %}</p>
+        <p class="card-text link-right">Colonna di appartenenza: {{ card.id_column.name }}
+        <a href="{% url 'update_id_column' card.id %}">Modifica</a></p>
+    </div>
+    <div class="card-footer">
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                Utenti della card <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                {% for user in user_list %}
+                <li class=" link-right">
+                    {{ user.username }}
+                    {% if request.user.id != user.id %}
+                    <a href="{% url 'delete_user_from_card' user.id card.id %}">
+                    Elimina
+                    </a>
+                    {% endif %}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% if exclude_user_list %}
+        <div class="btn-group button-right">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                Utenti esclusi <span class="caret"></span>
+            </button>
+        <ul class="dropdown-menu" role="menu">
+            {% for user in exclude_user_list %}
+            <li class="link-right">
+                {{ user.username }}
+                <a href="{% url 'add_user_to_card' user.id card.id %}">
+                Aggiungi
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
